@@ -6,33 +6,32 @@ export default function Footer() {
       <div className="container flex flex-wrap items-center justify-center mx-auto space-y-4 sm:justify-between sm:space-y-0">
         <div className="flex flex-row pr-3 space-x-4 sm:space-x-8">
           <Logo />
-
-          <ul className="flex flex-wrap items-center space-x-4 sm:space-x-8">
-            <li>
-              <a rel="noopener noreferrer" href="#">
-                Terms of Use
-              </a>
-            </li>
-            <li>
-              <a rel="noopener noreferrer" href="#">
-                Privacy
-              </a>
-            </li>
-          </ul>
         </div>
         <ul className="flex flex-wrap pl-3 space-x-4 sm:space-x-8">
           <li>
-            <a rel="noopener noreferrer" href="#">
-              Instagram
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://github.com/Chisomprince/next13-blog"
+            >
+              Github
             </a>
           </li>
           <li>
-            <a rel="noopener noreferrer" href="#">
-              Facebook
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://www.linkedin.com/in/chisom-moses-3a9b7315b/"
+            >
+              LinkedIn
             </a>
           </li>
           <li>
-            <a rel="noopener noreferrer" href="#">
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://twitter.com/ChisomPrince10"
+            >
               Twitter
             </a>
           </li>
