@@ -1,6 +1,5 @@
 import { fetchBlogs } from "@/actions/blog";
-import BlogList from "@/components/blog/blog-list";
-import { BlogSearch } from "@/components/blog/blog-search";
+import AllBlogsList from "@/components/blog/bog-list-page";
 import { notFound } from "next/navigation";
 
 export default async function AllBlogs() {
@@ -11,11 +10,8 @@ export default async function AllBlogs() {
   }
   return (
     <>
-      <main>
-        <h2 className="text-2xl font-bold text-center mt-20">All Stories</h2>
-        <BlogSearch />
-        <BlogList blogs={blogs} />
-      </main>
+      <h2 className="text-2xl font-bold text-center mt-20">All Stories</h2>
+      <AllBlogsList blogs={blogs} />
     </>
   );
 }
