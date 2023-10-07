@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+   id                 String  @id @default(cuid())
+  name      String
+  email     String   @unique
+  image     String
+  // posts     Post[]
+  createdAt DateTime @default(now())
+}
+
+model Post {
+  id                 String  @id @default(cuid())
+  title     String
+  content   String?
+  description String?
+  published Boolean @default(false)
+
+  authorId  String?
+  createdAt          DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt          DateTime  @updatedAt @db.Timestamptz(3)
+}
