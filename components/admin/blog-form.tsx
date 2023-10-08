@@ -25,16 +25,46 @@ import { Textarea } from "@/components/ui/textarea";
 import WYSIWYGEditor from "@/components/ui/wysiwyg-editor";
 import useBlogSubmit from "@/hooks/useBlogSubmit";
 import { Post } from "@prisma/client";
+import Image from "next/image";
+import { AspectRatio } from "../ui/aspect-ratio";
 interface BlogFormProps {
   blog?: Post;
 }
 
 export function BlogForm({ blog }: BlogFormProps) {
-  const { onSubmit, loading, form } = useBlogSubmit(blog);
-
+  const { onSubmit, loading, form, handleImageUpload } = useBlogSubmit(blog);
+  const image = form.watch("image");
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mb-32">
+        {image ? (
+          <div className="">
+            <AspectRatio ratio={16 / 9} className="border">
+              <Image
+                src={form.watch("image") || ""}
+                alt="Image"
+                className="rounded-md object-cover"
+                fill
+              />
+            </AspectRatio>
+            <div className="flex justify-end">
+              <Button
+                variant={"destructive"}
+                onClick={() => form.setValue("image", "")}
+              >
+                Delete Image
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <Input
+            placeholder="..."
+            onChange={handleImageUpload}
+            type="file"
+            accept="image/*"
+          />
+        )}
+
         <FormField
           control={form.control}
           name="title"

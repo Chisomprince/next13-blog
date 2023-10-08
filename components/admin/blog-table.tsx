@@ -14,7 +14,7 @@ type BlogTable = {
 };
 export default function BlogTable({ blogs }: BlogTable) {
   return (
-    <div>
+    <div className="overflow-x-scroll">
       <Table className="w-full">
         <TableHeader>
           <TableRow>

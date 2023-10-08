@@ -11,6 +11,10 @@ export const homeNav = [
     title: "About",
     href: "/about",
   },
+  // {
+  //   title: "Login",
+  //   href: "/sign-in",
+  // },
 ];
 
 export const adminNav = [

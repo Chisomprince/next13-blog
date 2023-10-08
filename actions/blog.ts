@@ -10,10 +10,20 @@ import { revalidatePath } from "next/cache";
  * @param data
  * @returns
  */
-export const createBlogs = async (data: blogFormSchemaType) => {
+export const createBlogs = async (
+  data: blogFormSchemaType & { slug: string }
+) => {
   const user: User | null = await currentUser();
   if (!user) {
     throw new Error("User not found");
+  }
+
+  const slugExist = await prisma.post.findFirst({
+    where: { slug: data.slug },
+  });
+
+  if (slugExist) {
+    throw new Error("A blog with same title already exist");
   }
 
   const res = await prisma.post.create({
@@ -45,8 +55,10 @@ export const fetchBlogById = async (id: string) => {
 };
 
 //TODO
-export const fetchBlogBySlug = async () => {
-  return await prisma.post.findMany();
+export const fetchBlogBySlug = async (slug: string) => {
+  return await prisma.post.findFirst({
+    where: { slug },
+  });
 };
 
 /**
