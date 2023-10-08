@@ -22,6 +22,16 @@ export function catchApiErrors(err: unknown) {
   }
 }
 
+export function generateSlug(title: string) {
+  // Convert the title to lowercase and replace spaces with hyphens
+  const slug = title.toLowerCase().replace(/\s+/g, "-");
+
+  // Remove any characters that are not alphanumeric or hyphens
+  const cleanedSlug = slug.replace(/[^a-z0-9-]/g, "");
+
+  return cleanedSlug;
+}
+
 // Deprecated
 export function highlightTextWithXPath(htmlContent: string, xpath: string) {
   const parser = new DOMParser();

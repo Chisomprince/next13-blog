@@ -21,7 +21,7 @@ export function BlogCard({ blog }: BlogCardProps) {
       <Link href={"/blog/slog"}>
         <AspectRatio ratio={16 / 9}>
           <Image
-            src="https://source.unsplash.com/random/480x360/?4"
+            src={blog.image || "https://source.unsplash.com/random/480x360/?4"}
             alt="Image"
             className="rounded-md object-cover"
             fill
@@ -30,10 +30,15 @@ export function BlogCard({ blog }: BlogCardProps) {
       </Link>
       <CardHeader>
         <CardTitle>{blog.title}</CardTitle>
-        <CardDescription>{blog.description}</CardDescription>
+        <CardDescription>
+          {/* // @ts-ignore */}
+          {blog?.description?.length && blog?.description?.length > 100
+            ? blog.description?.slice(0, 100) + "..."
+            : blog.description}
+        </CardDescription>
       </CardHeader>
       <CardFooter className="flex justify-between">
-        <Link href={`/blog/${blog.id}`}>
+        <Link href={`/blog/${blog.slug}`}>
           <Button>Read More</Button>
         </Link>
       </CardFooter>

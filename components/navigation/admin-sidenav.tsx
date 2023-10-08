@@ -20,7 +20,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
   return (
     <nav
       className={cn(
-        "sticky top-0 h-full flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-4 bg-muted px-6 py-8 border-r",
+        "sticky top-0 h-full flex space-x-2 flex-col lg:space-x-0 lg:space-y-4 bg-muted px-6 py-8 border-r",
         className
       )}
       {...props}

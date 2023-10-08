@@ -16,11 +16,11 @@ interface SettingsLayoutProps {
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
     <div className="">
-      <aside className="lg:w-1/6 fixed lg:h-screen">
+      <aside className="hidden lg:block lg:w-1/6 lg:fixed lg:h-screen">
         <SidebarNav items={adminNav} />
       </aside>
 
-      <div className="w-5/6 ml-60 ">
+      <div className="lg:w-5/6 lg:ml-60 ">
         <AdminNavigation />
         <div className="flex-1 px-4 lg:px-12">{children}</div>
       </div>

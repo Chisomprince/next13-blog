@@ -6,13 +6,14 @@ import { useForm } from "react-hook-form";
 import { createBlogs, updateBlog } from "@/actions/blog";
 
 import { toast } from "@/components/ui/use-toast";
+import { generateSlug } from "@/lib/utils";
 import {
   blogFormSchema,
   blogFormSchemaType,
 } from "@/lib/validations/blog-schema";
 import { Post } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export default function useBlogSubmit(blog?: Post) {
   const router = useRouter();
@@ -33,14 +34,18 @@ export default function useBlogSubmit(blog?: Post) {
   async function onSubmit(data: blogFormSchemaType) {
     try {
       setLoading(true);
+      const payload = {
+        ...data,
+        slug: generateSlug(data.title),
+      };
       if (blog) {
-        await updateBlog(blog.id, data);
+        await updateBlog(blog.id, payload);
         toast({
           title: "Success",
           description: "blog Information updated successfully",
         });
       } else {
-        await createBlogs(data);
+        await createBlogs(payload);
         toast({
           title: "Success",
           description: "blog created successfully",
@@ -67,5 +72,17 @@ export default function useBlogSubmit(blog?: Post) {
     }
   }
 
-  return { onSubmit, loading, form };
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target?.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64Data = event?.target?.result as string;
+        form.setValue("image", base64Data);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  return { onSubmit, loading, form, handleImageUpload };
 }

@@ -1,4 +1,4 @@
-import { fetchBlogById, fetchBlogs } from "@/actions/blog";
+import { fetchBlogBySlug, fetchBlogs } from "@/actions/blog";
 import BlogHero from "@/components/blog/blog-hero";
 import BlogList from "@/components/blog/blog-list";
 import { Separator } from "@/components/ui/separator";
@@ -13,7 +13,7 @@ type BlogSlugPageProps = {
   };
 };
 export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
-  const blog = await fetchBlogById(params.slug);
+  const blog = await fetchBlogBySlug(params.slug);
   const blogs = await fetchBlogs();
   if (!blog) {
     notFound();

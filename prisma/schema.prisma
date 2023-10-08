@@ -23,8 +23,9 @@ model Post {
   title     String
   content   String?
   description String?
+  slug String     @unique
+  image String?
   published Boolean @default(false)
-
   authorId  String?
   createdAt          DateTime  @default(now()) @db.Timestamptz(3)
   updatedAt          DateTime  @updatedAt @db.Timestamptz(3)
