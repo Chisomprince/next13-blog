@@ -18,7 +18,7 @@ type BlogCardProps = {
 export function BlogCard({ blog }: BlogCardProps) {
   return (
     <Card className="w-[350px]">
-      <Link href={"/blog/slog"}>
+      <Link href={`/blog/${blog.slug}`}>
         <AspectRatio ratio={16 / 9}>
           <Image
             src={blog.image || "https://source.unsplash.com/random/480x360/?4"}
