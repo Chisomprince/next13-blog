@@ -27,7 +27,7 @@ export default async function Home() {
         <BlogList blogs={blogs.splice(0, 6)} />
 
         <div className="flex justify-center mt-10 my-20">
-          <Link href={"/blogs"}>
+          <Link href={"/blog"}>
             <Button className="px-8">All Blogs</Button>
           </Link>
         </div>
