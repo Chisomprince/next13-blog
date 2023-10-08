@@ -1,6 +1,6 @@
 import { fetchBlogById } from "@/actions/blog";
 import { notFound } from "next/navigation";
-import { BlogForm } from "../../../../components/admin/blog-form";
+import { BlogForm } from "./blog-form";
 
 type AdminBlogSlugProps = {
   params: {
